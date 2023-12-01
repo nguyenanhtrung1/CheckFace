@@ -22,7 +22,7 @@ async function loadTrainingData() {
 }
 
 let faceMatcher
-async function init() {
+async function init1() {
 	await Promise.all([
 		faceapi.nets.ageGenderNet.loadFromUri("/models"),
 		faceapi.nets.ssdMobilenetv1.loadFromUri("/models"),
@@ -43,7 +43,7 @@ async function init() {
 	document.querySelector("#loading").remove();
 }
 
-init()
+init1()
 fileInput.addEventListener('change', async () => {
 	const files = fileInput.files;
 	const image = await faceapi.bufferToImage(files[0]);
