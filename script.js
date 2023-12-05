@@ -24,12 +24,12 @@ async function loadTrainingData() {
 let faceMatcher
 async function init1() {
 	await Promise.all([
-		faceapi.nets.ageGenderNet.loadFromUri("https://github.com/nguyenanhtrung1/CheckFace/tree/main/models"),
-		faceapi.nets.ssdMobilenetv1.loadFromUri("https://github.com/nguyenanhtrung1/CheckFace/tree/main/models"),
-		faceapi.nets.tinyFaceDetector.loadFromUri('https://github.com/nguyenanhtrung1/CheckFace/tree/main/models'),
-		faceapi.nets.faceLandmark68Net.loadFromUri('https://github.com/nguyenanhtrung1/CheckFace/tree/main/models'),
-		faceapi.nets.faceRecognitionNet.loadFromUri('https://github.com/nguyenanhtrung1/CheckFace/tree/main/models'),
-		faceapi.nets.faceExpressionNet.loadFromUri('https://github.com/nguyenanhtrung1/CheckFace/tree/main/models')
+		faceapi.nets.ageGenderNet.loadFromUri("/models"),
+		faceapi.nets.ssdMobilenetv1.loadFromUri("/models"),
+		faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+		faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+		faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+		faceapi.nets.faceExpressionNet.loadFromUri('/models')
 	])
 
 	Toastify({
