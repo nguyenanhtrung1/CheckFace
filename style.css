@@ -14,3 +14,10 @@ canvas {
     top: 0;
     left: 0;
 }
+table{
+    border-collapse: collapse;
+}
+th,td{
+    border: 1px solid black;
+    padding: 10px;
+}

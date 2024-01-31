@@ -1,5 +1,8 @@
+
 const container = document.querySelector('#container');
 const fileInput = document.querySelector('#file-input');
+let table2 = document.querySelector('table')
+let buttonAdd = document.querySelector('#add')
 
 async function loadTrainingData() {
 	const labels = ['dat', 'sếp', 'thy', 'trung','minh']
@@ -8,7 +11,7 @@ async function loadTrainingData() {
 	for (const label of labels) {
 		const descriptors = []
 		for (let i = 1; i <= 2; i++) {
-			const image = await faceapi.fetchImage(`./labels/${label}/${i}.jpg`)
+			const image = await faceapi.fetchImage(`https://raw.githubusercontent.com/nguyenanhtrung1/CheckFace/main/labels/${label}/${i}.jpg`)
 			const detection = await faceapi.detectSingleFace(image).withFaceLandmarks().withFaceDescriptor()
 			descriptors.push(detection.descriptor)
 		}
@@ -22,7 +25,7 @@ async function loadTrainingData() {
 }
 
 let faceMatcher
-async function init1() {
+async function init() {
 	await Promise.all([
 		faceapi.nets.ageGenderNet.loadFromUri("/models"),
 		faceapi.nets.ssdMobilenetv1.loadFromUri("/models"),
@@ -43,7 +46,7 @@ async function init1() {
 	document.querySelector("#loading").remove();
 }
 
-init1()
+init()
 fileInput.addEventListener('change', async () => {
 	const files = fileInput.files;
 	const image = await faceapi.bufferToImage(files[0]);
@@ -74,7 +77,6 @@ fileInput.addEventListener('change', async () => {
 	for (const detection of resizedDetections) {
 		const drawBox = new faceapi.draw.DrawBox(detection.detection.box, {
 			label: faceMatcher.findBestMatch(detection.descriptor).toString()
-			
 		})
 		drawBox.draw(canvas)
 
@@ -88,6 +90,23 @@ fileInput.addEventListener('change', async () => {
 		  }
 		});
 		console.log(faceMatcher.findBestMatch(detection.descriptor).toString() + " "+ highestExpression);
+		// buttonAdd.addEventListener('click',() =>{
+		// 	// let name = "trung"
+		// 	// let age = 18
+		// 	// let time = "21/04/2002"
+		// 	let template = `<tr>
+		// 		<td>${faceMatcher.findBestMatch(detection.descriptor).toString()}</td>
+		// 		<td>${highestExpression}</td>
+		// 		<td>${new Date().toLocaleString()}</td>
+		// 	</tr>`;
+		// table.innerHTML += template
+		// })
+		let template = `<tr>
+				<td>${faceMatcher.findBestMatch(detection.descriptor).toString()}</td>
+				<td>${highestExpression}</td>
+				<td>${new Date().toLocaleString()}</td>
+			</tr>`;
+			table2.innerHTML += template
 	}
 	resizedDetections.forEach(result => {
 		const {age, gender} = result;
@@ -99,8 +118,17 @@ fileInput.addEventListener('change', async () => {
 		result.detection.box.topRight
 		).draw(canvas);
 	  })
-
+	  
 	// setTimeout(() => {
     //     alert(`Số lượng khuôn mặt trong ảnh : ${numberOfFaces} || Thời gian : ${new Date().toLocaleString()}`);	
     // }, 1000);
 })
+let exportExcel = document.querySelector('#export');
+const filePath = "A:/PartTimeTrain/Database/Trung/File/";
+const fileName = "data";
+
+exportExcel.addEventListener('click', () => {
+
+  const table2excel = new Table2Excel();
+  table2excel.export(table2, fileName, filePath);
+});
