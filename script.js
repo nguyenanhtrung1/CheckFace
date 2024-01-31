@@ -27,12 +27,12 @@ async function loadTrainingData() {
 let faceMatcher
 async function init() {
 	await Promise.all([
-		faceapi.nets.ageGenderNet.loadFromUri("https://nguyenanhtrung1.github.io/CheckFace/models/age_gender_model-weights_manifest.json"),
-		faceapi.nets.ssdMobilenetv1.loadFromUri("https://nguyenanhtrung1.github.io/CheckFace/models/ssd_mobilenetv1_model-weights_manifest.json"),
-		faceapi.nets.tinyFaceDetector.loadFromUri('https://nguyenanhtrung1.github.io/CheckFace/models/tiny_face_detector_model-weights_manifest.json'),
-		faceapi.nets.faceLandmark68Net.loadFromUri('https://nguyenanhtrung1.github.io/CheckFace/models/face_landmark_68_model-weights_manifest.json'),
-		faceapi.nets.faceRecognitionNet.loadFromUri('https://nguyenanhtrung1.github.io/CheckFace/models/face_recognition_model-weights_manifest.json'),
-		faceapi.nets.faceExpressionNet.loadFromUri('https://nguyenanhtrung1.github.io/CheckFace/models/face_expression_model-weights_manifest.json')
+		faceapi.nets.ageGenderNet.loadFromUri("https://nguyenanhtrung1.github.io/CheckFace/CheckFace/models/age_gender_model-weights_manifest.json"),
+		faceapi.nets.ssdMobilenetv1.loadFromUri("https://nguyenanhtrung1.github.io/CheckFace/CheckFace/models/ssd_mobilenetv1_model-weights_manifest.json"),
+		faceapi.nets.tinyFaceDetector.loadFromUri('https://nguyenanhtrung1.github.io/CheckFace/CheckFace/models/tiny_face_detector_model-weights_manifest.json'),
+		faceapi.nets.faceLandmark68Net.loadFromUri('https://nguyenanhtrung1.github.io/CheckFace/CheckFace/models/face_landmark_68_model-weights_manifest.json'),
+		faceapi.nets.faceRecognitionNet.loadFromUri('https://nguyenanhtrung1.github.io/CheckFace/CheckFace/models/face_recognition_model-weights_manifest.json'),
+		faceapi.nets.faceExpressionNet.loadFromUri('https://nguyenanhtrung1.github.io/CheckFace/CheckFace/models/face_expression_model-weights_manifest.json')
 	])
 
 	Toastify({
